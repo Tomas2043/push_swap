@@ -6,7 +6,7 @@
 /*   By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 11:05:37 by toandrad          #+#    #+#             */
-/*   Updated: 2025/09/19 11:46:39 by toandrad         ###   ########.fr       */
+/*   Updated: 2025/09/22 12:57:42 by toandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	dispatch(t_stack *a, t_stack *b)
 		sort3(a);
 	else if (a->size <= 5)
 		sort5(a, b);
+	else
+		radix_sort(a, b);
 }
 
 int	main(int ac, char **av)

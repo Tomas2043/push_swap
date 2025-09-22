@@ -6,7 +6,7 @@
 /*   By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 11:27:56 by toandrad          #+#    #+#             */
-/*   Updated: 2025/09/19 11:42:53 by toandrad         ###   ########.fr       */
+/*   Updated: 2025/09/22 12:31:56 by toandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,30 +69,44 @@ static int	push_value(t_stack *a, const char *tok)
 	return (0);
 }
 
-int	parse_args(int ac, char **av, t_stack *a)
+static int	parse_split_arg(t_stack *a, char *arg)
 {
 	char	**parts;
-	int		i;
 	int		j;
+
+	if (!arg[0])
+		return (-1);
+	parts = ft_split(arg, ' ');
+	if (!parts)
+		return (-1);
+	j = 0;
+	while (parts[j])
+	{
+		if (push_value(a, parts[j]) == -1)
+		{
+			while (parts[j])
+				free(parts[j++]);
+			free(parts);
+			return (-1);
+		}
+		j++;
+	}
+	j = 0;
+	while (parts[j])
+		free(parts[j++]);
+	free(parts);
+	return (0);
+}
+
+int	parse_args(int ac, char **av, t_stack *a)
+{
+	int	i;
 
 	i = 1;
 	while (i < ac)
 	{
-		if (!av[i][0])
+		if (parse_split_arg(a, av[i]) == -1)
 			return (-1);
-		parts = ft_split(av[i], ' ');
-		if (!parts)
-			return (-1);
-		j = 0;
-		while (parts[j++])
-		{
-			if (push_value(a, parts[j]) == -1)
-				return (-1);
-		}
-		j = 0;
-		while (parts[j])
-			free(parts[j++]);
-		free(parts);
 		i++;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 15:10:57 by toandrad          #+#    #+#             */
-/*   Updated: 2025/09/19 12:11:11 by toandrad         ###   ########.fr       */
+/*   Updated: 2025/09/22 12:57:35 by toandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,7 @@ int	is_sorted(t_stack *a);
 int	parse_args(int ac, char **av, t_stack *a);
 
 int	stack_check_integrity(t_stack *s, const char *label);
+
+void	radix_sort(t_stack *a, t_stack *b);
 
 #endif
