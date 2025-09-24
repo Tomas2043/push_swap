@@ -6,7 +6,7 @@
 /*   By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 10:27:03 by toandrad          #+#    #+#             */
-/*   Updated: 2025/09/24 10:40:12 by toandrad         ###   ########.fr       */
+/*   Updated: 2025/09/24 12:28:19 by toandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,26 +65,33 @@ static int	find_max_value(t_stack *stack)
 	return (max_val);
 }
 
-static int	find_bigger_target(t_stack *a, int b_value)
+void	push_initial_to_b(t_stack *a, t_stack *b)
 {
-	t_node	*cur;
-	int		pos;
-	int		target_pos;
-	int		min_bigger;
+	int	push_count;
 
-	cur = a->top;
-	pos = 0;
-	target_pos = 0;
-	min_bigger = INT_MAX;
-	while (cur)
+	if (a->size <= 5)
+		return ;
+	push_count = a->size - 3;
+	while (push_count-- && a->size > 3)
+		pb(a, b);
+	sort3(a);
+}
+
+void	turk_sort(t_stack *a, t_stack *b)
+{
+	int	min_pos;
+
+	if (a->size <= 5)
 	{
-		if (cur->value > b_value && cur->value < min_bigger)
-		{
-			min_bigger = cur->value;
-			target_pos = pos;
-		}
-		cur = cur->next;
-		pos++;
+		if (a->size <= 3)
+			sort3(a);
+		else
+			sort5(a, b);
+		return ;
 	}
-	return (target_pos);
+	push_initial_to_b(a, b);
+	while (b->size > 0)
+		push_cheapest_to_a(a, b);
+	min_pos = find_position(a, find_min_value(a));
+	rotate_to_position_a(a, min_pos);
 }
