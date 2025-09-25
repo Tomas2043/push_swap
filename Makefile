@@ -6,7 +6,7 @@
 #    By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/20 15:35:18 by toandrad          #+#    #+#              #
-#    Updated: 2025/09/22 12:58:00 by toandrad         ###   ########.fr        #
+#    Updated: 2025/09/25 10:34:56 by toandrad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ VPATH = $(SRCDIR) $(SRCDIR)/moves
 # Source files
 SRCS		= main.c	push_pop.c	push.c	reverse_rotate.c \
 					rotate.c	swap.c	stack_utils.c	utils_order.c \
-					sort3.c	sort5.c	parser.c	debug.c	radix_sort.c \
+					sort3.c	sort5.c	parser.c	debug.c	turk_sort.c \
+					turk_rotate.c	turk_utils.c	turk_cost.c
 					
 
 # Object files

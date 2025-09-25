@@ -6,13 +6,13 @@
 /*   By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 10:27:03 by toandrad          #+#    #+#             */
-/*   Updated: 2025/09/24 12:28:19 by toandrad         ###   ########.fr       */
+/*   Updated: 2025/09/25 10:37:57 by toandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-static int	find_position(t_stack *stack, int value)
+int	find_position(t_stack *stack, int value)
 {
 	t_node	*cur;
 	int		pos;
@@ -21,7 +21,7 @@ static int	find_position(t_stack *stack, int value)
 	pos = 0;
 	while (cur)
 	{
-		if (cur->next == value)
+		if (cur->next->value == value)
 			return (pos);
 		cur = cur->next;
 		pos++;
@@ -29,7 +29,7 @@ static int	find_position(t_stack *stack, int value)
 	return (-1);
 }
 
-static int	find_min_value(t_stack  *stack)
+int	find_min_value(t_stack  *stack)
 {
 	t_node	*cur;
 	int		min_val;
@@ -47,7 +47,7 @@ static int	find_min_value(t_stack  *stack)
 	return (min_val);
 }
 
-static int	find_max_value(t_stack *stack)
+int	find_max_value(t_stack *stack)
 {
 	t_node	*cur;
 	int		max_val;

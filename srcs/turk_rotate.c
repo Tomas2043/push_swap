@@ -6,7 +6,7 @@
 /*   By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 10:59:16 by toandrad          #+#    #+#             */
-/*   Updated: 2025/09/24 11:10:00 by toandrad         ###   ########.fr       */
+/*   Updated: 2025/09/25 10:38:13 by toandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	rotate_to_position_b(t_stack *b, int pos)
 	else
 	{
 		pos = b->size - pos;
-		while (pos--);
+		while (pos--)
 			rrb(b);
 	}
 }
