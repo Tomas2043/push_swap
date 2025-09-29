@@ -6,7 +6,7 @@
 /*   By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 10:27:03 by toandrad          #+#    #+#             */
-/*   Updated: 2025/09/25 10:37:57 by toandrad         ###   ########.fr       */
+/*   Updated: 2025/09/25 12:35:07 by toandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	find_position(t_stack *stack, int value)
 	pos = 0;
 	while (cur)
 	{
-		if (cur->next->value == value)
+		if (cur->value == value)
 			return (pos);
 		cur = cur->next;
 		pos++;
