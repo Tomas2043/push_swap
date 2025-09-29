@@ -6,7 +6,7 @@
 /*   By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 15:10:57 by toandrad          #+#    #+#             */
-/*   Updated: 2025/09/25 10:37:25 by toandrad         ###   ########.fr       */
+/*   Updated: 2025/09/29 10:10:09 by toandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ t_node	*node_new(int v);
 void	free_stack(t_stack *s);
 int		error_exit(t_stack *a, t_stack *b);
 
-int	is_sorted(t_stack *a);
+int		is_sorted(t_stack *a);
 
-int	parse_args(int ac, char **av, t_stack *a);
+int		parse_args(int ac, char **av, t_stack *a);
 
-int	stack_check_integrity(t_stack *s, const char *label);
+int		stack_check_integrity(t_stack *s, const char *label);
 
 void	turk_sort(t_stack *a, t_stack *b);
 void	push_initial_to_b(t_stack *a, t_stack *b);

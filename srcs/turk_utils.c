@@ -6,7 +6,7 @@
 /*   By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:17:25 by toandrad          #+#    #+#             */
-/*   Updated: 2025/09/24 11:50:03 by toandrad         ###   ########.fr       */
+/*   Updated: 2025/09/29 10:10:45 by toandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	find_bigger_target(t_stack *a, int b_value)
 
 	cur = a->top;
 	pos = 0;
-	target_pos = 0;
+	target_pos = -1;
 	min_bigger = INT_MAX;
 	while (cur)
 	{
@@ -45,7 +45,7 @@ int	find_target_pos_in_a(t_stack *a, int b_value)
 	if (a->size == 0)
 		return (0);
 	target_pos = find_bigger_target(a, b_value);
-	if (target_pos != 0)
+	if (target_pos != -1)
 		return (target_pos);
 	max_value = find_max_value(a);
 	max_pos = find_position(a, max_value);
@@ -97,7 +97,7 @@ void	push_cheapest_to_a(t_stack *a, t_stack *b)
 	int	cheapest_index;
 	int	b_value;
 	int	target_pos;
-	
+
 	cheapest_index = find_cheapest_index(a, b);
 	b_value = get_b_value_at_index(b, cheapest_index);
 	target_pos = find_target_pos_in_a(a, b_value);

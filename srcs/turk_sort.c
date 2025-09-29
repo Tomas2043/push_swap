@@ -6,7 +6,7 @@
 /*   By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 10:27:03 by toandrad          #+#    #+#             */
-/*   Updated: 2025/09/25 12:35:07 by toandrad         ###   ########.fr       */
+/*   Updated: 2025/09/29 10:10:33 by toandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	find_position(t_stack *stack, int value)
 	return (-1);
 }
 
-int	find_min_value(t_stack  *stack)
+int	find_min_value(t_stack *stack)
 {
 	t_node	*cur;
 	int		min_val;
