@@ -169,11 +169,10 @@ Se este elemento for maior que qualquer elemento da stack A, ele deve vir a segu
 
 Depois de todos os elementos estarem na stack A, o menor elemento pode não estar no topo. Se for esse o caso, encontramos onde o menor número está posicionado na stack, e fazemos as rotações necessárias para levá-lo ao topo.
 
----
 
-### Código
+## Código
 
-#### Fase 1
+### Fase 1
 
 ```c
 void  push_initial_to_b(t_stack *a, t_stack *b)
@@ -191,7 +190,7 @@ void  push_initial_to_b(t_stack *a, t_stack *b)
 
 Esta função é a que manda todos os números para a stack B, deixando apenas 3 na stack A. Nesta função, definimos uma variável `push_count`, que dizemos que é igual ao número total de elementos na stack A, menos 3. E depois enquanto o `size` da stack A for maior que 3, aplicamos o `pb`. Depois de tudo aplicamos a nossa função `sort3()`.
 
-#### Fase 2
+### Fase 2
 
 ```c
 int find_target_pos_in_a(t_stack *a, t_stack *b)
@@ -216,3 +215,111 @@ Esta é a função que resolve a pergunta: "Para onde é que este elemento da st
 Primeiro, usamos a função `find_bigger_target()`, que procura pelo menor elemento na stack A que é maior do que o nosso elemento da stack B.
 
 Se o meu valor de B for maior que todos os elementos da stack A, não há alvo maior. Portanto temos que pô-lo depois do número máximo. Primeiro encontra-mos o máximo, vemos a sua posição e retornamos a posição a seguir.
+
+### Fase 3
+
+```c
+int calculate_cost(t_stack *a, t_stack *b, int b_index)
+{
+  int b_value;
+  int target_pos_a;
+  int cost_b;
+  int cost_a;
+
+  b_value = get_b_value_at_index(b, b_index);
+  if (b_value == INT_MAX)
+    return (INT_MAX);
+  target_pos_a = find_target_pos_in_a(a, b_value);
+  cost_b = calculate_rotation_cost(b_index, b->size);
+  cost_a = calculate_rotation_cost(target_pos_a, a->size);
+  return (cost_a + cost_b);
+}
+```
+
+Para cada elemento de B, esta função calcula o custo total para movê-lo.
+
+`get_b_value_at_index(b, b_index)` obtem o valor da posição `b_index()` na stack B.
+
+`find_target_pos_in_a()` diz-nos onde é este elemento deve ir na stack A.
+
+`calculate_rotation_cost()` calcula o número de rotações necessárias.
+
+```c
+static int  calculate_rotation_cost(int pos, int size)
+{
+  if (pos <= size / 2)
+    return (pos);        // Rotate forward
+  else
+    return (size - pos); // Rotate backward
+}
+```
+
+Se o elemento estiver na posição 2 numa stack com tamanho 10, uma rotação para a frente (`ra`) custa 2 movimentos. Mas se estiver na posição 8, uma rotação para trás (`rra`) custa menos (10 - 8 = 2).
+
+### Fase 4
+
+```c
+int  find_cheapest_index(t_stack *a, t_stack *b)
+{
+  int  cheapest_cost;
+  int  cheapest_index;
+  int  current_cost;
+  int  i;
+
+  cheapest_cost = INT_MAX;
+  cheapest_index = 1;
+  i = 0;
+  while (i < b->size)
+  {
+    current_cost = calculate_cost(a, b, i);
+    if (current_cost < cheapest_cost)
+    {
+      cheapest_cost = current_cost;
+      cheapest_index = i;
+    }
+    i++;
+  }
+  return (cheapest_index);
+}
+```
+
+Esta função faz um loop por todos os elementos da stack B, calcula o custo de os mover para a stack A, e retorna o index do elemento mais barato.
+
+Depois o `push_cheapest_to_a()` é que executa:
+
+```c
+void  push_cheapest_to_a(t_stack *a, t_stack *b)
+{
+  int  cheapest_index;
+  int  b_value;
+  int  target_pos;
+
+  cheapest_index = find_cheapest_index(a, b);
+  b_value = get_b_value_at_index(b, cheapest_index);
+  target_pos = find_target_pos_in_a(a, b_value);
+  rotate_to_position_b(b, cheapest_index);
+  rotate_to_position_a(a, target_pos);
+  pa(a, b);
+}
+```
+
+Esta função encontra o elemento mais barato, faz as rotações na stack B para levá-lo ao topo, prepara a stack A para o receber (ou seja, faz as rotações necessárias para recebê-lo na posição correta) e depois aplica o push (`pa`).
+
+### Fase 5
+
+Loop principal:
+
+```c
+void  turk_sort(t_stack *a, t_stack *b)
+{
+  int  min_pos;
+
+  push_initial_to_b(a, b);
+  while (b->size > 0)
+    push_cheapest_to_a(a, b);
+  min_pos = find_position(a, find_min_value(a));
+  rotate_to_position_a(a, min_pos);
+}
+```
+
+Primeiro fazemos o setup, depois mandamos todos os números da stack B e depois disso fazemos a rotação final.
