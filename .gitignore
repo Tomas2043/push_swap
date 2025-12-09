@@ -5,3 +5,5 @@ push_swap_test_linux.sh
 traces.txt
 push_swap
 /push_swap_visualizer
+*.o
+*.a

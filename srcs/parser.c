@@ -6,21 +6,21 @@
 /*   By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 11:27:56 by toandrad          #+#    #+#             */
-/*   Updated: 2025/09/22 12:31:56 by toandrad         ###   ########.fr       */
+/*   Updated: 2025/12/03 12:26:38 by toandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-static int	safe_atoi(const char *s, int *out)
+static int	safe_atoi(const char *s, int *result)
 {
 	long	sign;
-	long	res;
+	long	value;
 	int		i;
 
 	i = 0;
 	sign = 1;
-	res = 0;
+	value = 0;
 	if (s[i] == '+' || s[i] == '-')
 		if (s[i++] == '-')
 			sign = -1;
@@ -30,12 +30,12 @@ static int	safe_atoi(const char *s, int *out)
 	{
 		if (!ft_isdigit((unsigned char)s[i]))
 			return (-1);
-		res = res * 10 + (s[i] - '0');
-		if (sign * res > INT_MAX || sign * res < INT_MIN)
+		value = value * 10 + (s[i] - '0');
+		if (sign * value > INT_MAX || sign * value < INT_MIN)
 			return (-1);
 		i++;
 	}
-	*out = (int)(sign * res);
+	*result = (int)(sign * value);
 	return (0);
 }
 
@@ -53,48 +53,48 @@ static int	has_dup(t_stack *a, int v)
 	return (0);
 }
 
-static int	push_value(t_stack *a, const char *tok)
+static int	validate_and_push(t_stack *a, const char *token)
 {
-	int		v;
-	t_node	*n;
+	int		value;
+	t_node	*node;
 
-	if (safe_atoi(tok, &v) == -1)
+	if (safe_atoi(token, &value) == -1)
 		return (-1);
-	if (has_dup(a, v))
+	if (has_dup(a, value))
 		return (-1);
-	n = node_new(v);
-	if (!n)
+	node = node_new(value);
+	if (!node)
 		return (-1);
-	stack_push_bottom(a, n);
+	stack_push_bottom(a, node);
 	return (0);
 }
 
-static int	parse_split_arg(t_stack *a, char *arg)
+static int	parse_arg(t_stack *a, char *arg)
 {
-	char	**parts;
+	char	**tokens;
 	int		j;
 
 	if (!arg[0])
 		return (-1);
-	parts = ft_split(arg, ' ');
-	if (!parts)
+	tokens = ft_split(arg, ' ');
+	if (!tokens)
 		return (-1);
 	j = 0;
-	while (parts[j])
+	while (tokens[j])
 	{
-		if (push_value(a, parts[j]) == -1)
+		if (validate_and_push(a, tokens[j]) == -1)
 		{
-			while (parts[j])
-				free(parts[j++]);
-			free(parts);
+			while (tokens[j])
+				free(tokens[j++]);
+			free(tokens);
 			return (-1);
 		}
 		j++;
 	}
 	j = 0;
-	while (parts[j])
-		free(parts[j++]);
-	free(parts);
+	while (tokens[j])
+		free(tokens[j++]);
+	free(tokens);
 	return (0);
 }
 
@@ -105,7 +105,7 @@ int	parse_args(int ac, char **av, t_stack *a)
 	i = 1;
 	while (i < ac)
 	{
-		if (parse_split_arg(a, av[i]) == -1)
+		if (parse_arg(a, av[i]) == -1)
 			return (-1);
 		i++;
 	}
