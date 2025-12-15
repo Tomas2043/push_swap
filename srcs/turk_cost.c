@@ -6,7 +6,7 @@
 /*   By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:12:51 by toandrad          #+#    #+#             */
-/*   Updated: 2025/10/06 11:17:34 by toandrad         ###   ########.fr       */
+/*   Updated: 2025/12/15 11:33:03 by toandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	calculate_rotation_cost(int pos, int size)
 	if (pos <= size / 2)
 		return (pos);
 	else
-		return (size - pos);  
+		return (size - pos);
 }
 
 int	calculate_cost(t_stack *a, t_stack *b, int b_index)
