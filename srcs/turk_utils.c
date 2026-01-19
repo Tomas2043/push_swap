@@ -6,7 +6,7 @@
 /*   By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:17:25 by toandrad          #+#    #+#             */
-/*   Updated: 2025/12/15 15:10:54 by toandrad         ###   ########.fr       */
+/*   Updated: 2025/12/16 10:56:07 by toandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,17 @@ int	find_cheapest_index(t_stack *a, t_stack *b)
 		i++;
 	}
 	return (cheapest_index);
+}
+
+void	push_cheapest_to_a(t_stack *a, t_stack *b)
+{
+	int	cheapest_index;
+	int	b_value;
+	int	target_pos;
+
+	cheapest_index = find_cheapest_index(a, b);
+	b_value = get_b_value_at_index(b, cheapest_index);
+	target_pos = find_target_pos_in_a(a, b_value);
+	execute_moves(a, b, target_pos, cheapest_index);
+	pa(a, b);
 }

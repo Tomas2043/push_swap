@@ -6,7 +6,7 @@
 #    By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/20 15:35:18 by toandrad          #+#    #+#              #
-#    Updated: 2025/12/12 14:09:27 by toandrad         ###   ########.fr        #
+#    Updated: 2026/01/16 11:53:59 by toandrad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ VPATH = $(SRCDIR) $(SRCDIR)/moves
 SRCS		= main.c	push_pop.c	push.c	reverse_rotate.c \
 					rotate.c	swap.c	stack_utils.c	utils_order.c \
 					sort3.c	sort5.c	parser.c	debug.c	turk_sort.c \
-					turk_rotate.c	turk_utils.c	turk_cost.c
+					turk_rotate.c	turk_utils.c turk_cost.c turk_exec.c
 					
 
 OBJS		= $(addprefix $(OBJSDIR)/, $(SRCS:.c=.o))
@@ -79,34 +79,21 @@ fclean: clean
 	@echo "$(RED)🗑️  All generated files deleted.$(RESET)"
 
 tests: $(NAME)
-	@echo "$(BLUE)Running tests...$(RESET)"
-	@echo ""
-	@echo "$(YELLOW)Test 1: 3 Numbers$(RESET)"
-	@./$(NAME) 2 1 3 | wc -l
-	@echo ""
-	@echo "$(YELLOW)Test 2: 5 numbers$(RESET)"
-	@ARG="$$(shuf -i 0-100 -n 5 | tr '\n' ' ')"; \
-	echo "Numbers: $$ARG"; \
-	./$(NAME) $$ARG | wc -l
-	@echo ""
-	@echo "$(YELLOW)Test 3: 100 numbers$(RESET)"
-	@ARG="$$(shuf -i 0-5000 -n 100 | tr '\n' ' ')"; \
-	MOVES=$$(./$(NAME) $$ARG | wc -l); \
-	echo "Moves: $$MOVES"
-	@echo ""
-	@echo "$(YELLOW)Test 4: 500 Numbers$(RESET)"
-	@ARG="$$(shuf -i 0-5000 -n 500 | tr '\n' ' ')"; \
-	MOVES=$$(./$(NAME) $$ARG | wc -l); \
-	echo "Moves: $$MOVES"
-	@echo ""
-	@echo "$(YELLOW)Test 5: Already sorted$(RESET)"
-	@./$(NAME) 1 2 3 4 5 | wc -l
-	@echo ""
-	@echo "$(YELLOW)Test 6: Error - duplicates$(RESET)"
-	@./$(NAME) 1 2 3 2 2>&1 || echo "Error detected ✓"
-	@echo ""
-	@echo "$(GREEN)Tests complete!$(RESET)"
+	@if [ ! -f tests/loop.sh ]; then \
+		echo "$(RED)Error: tests/loop.sh not found!$(RESET)"; \
+		exit 1; \
+	fi
+	@chmod +x tests/loop.sh
+	@./tests/loop.sh
+
+edge: $(NAME)
+	@if [ ! -f tests/edge_tests.sh ]; then \
+		echo "$(RED)Error: edge_tests.sh not found!$(RESET)"; \
+		exit 1; \
+	fi
+	@chmod +x tests/edge_tests.sh
+	@./tests/edge_tests.sh
 
 re: fclean all
 
-.PHONY: all clean fclean re tests
+.PHONY: all clean fclean re tests edge

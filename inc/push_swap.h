@@ -6,7 +6,7 @@
 /*   By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 15:10:57 by toandrad          #+#    #+#             */
-/*   Updated: 2025/09/29 10:10:09 by toandrad         ###   ########.fr       */
+/*   Updated: 2025/12/16 10:56:28 by toandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ int		find_cheapest_index(t_stack *a, t_stack *b);
 int		calculate_cost(t_stack *a, t_stack *b, int b_index);
 int		get_b_value_at_index(t_stack *b, int index);
 int		find_bigger_target(t_stack *a, int b_value);
+void	execute_moves(t_stack *a, t_stack *b, int tpos, int cidx);
 
 #endif
