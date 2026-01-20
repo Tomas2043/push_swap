@@ -6,7 +6,7 @@
 /*   By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 15:10:57 by toandrad          #+#    #+#             */
-/*   Updated: 2025/12/16 10:56:28 by toandrad         ###   ########.fr       */
+/*   Updated: 2026/01/20 13:17:15 by toandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	pa(t_stack *a, t_stack *b);
 void	pb(t_stack *a, t_stack *b);
 
 void	sort3(t_stack *a);
-void	sort4(t_stack *a, t_stack *b);
 void	sort5(t_stack *a, t_stack *b);
 
 void	stack_init(t_stack *s);
@@ -64,8 +63,6 @@ int		error_exit(t_stack *a, t_stack *b);
 int		is_sorted(t_stack *a);
 
 int		parse_args(int ac, char **av, t_stack *a);
-
-int		stack_check_integrity(t_stack *s, const char *label);
 
 void	turk_sort(t_stack *a, t_stack *b);
 void	push_initial_to_b(t_stack *a, t_stack *b);
@@ -79,7 +76,6 @@ int		find_target_pos_in_a(t_stack *a, int b_value);
 int		find_cheapest_index(t_stack *a, t_stack *b);
 int		calculate_cost(t_stack *a, t_stack *b, int b_index);
 int		get_b_value_at_index(t_stack *b, int index);
-int		find_bigger_target(t_stack *a, int b_value);
 void	execute_moves(t_stack *a, t_stack *b, int tpos, int cidx);
 
 #endif

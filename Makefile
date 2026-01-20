@@ -6,7 +6,7 @@
 #    By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/20 15:35:18 by toandrad          #+#    #+#              #
-#    Updated: 2026/01/16 11:53:59 by toandrad         ###   ########.fr        #
+#    Updated: 2026/01/20 13:20:24 by toandrad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ VPATH = $(SRCDIR) $(SRCDIR)/moves
 
 SRCS		= main.c	push_pop.c	push.c	reverse_rotate.c \
 					rotate.c	swap.c	stack_utils.c	utils_order.c \
-					sort3.c	sort5.c	parser.c	debug.c	turk_sort.c \
+					sort3.c	sort5.c	parser.c	turk_sort.c \
 					turk_rotate.c	turk_utils.c turk_cost.c turk_exec.c
 					
 

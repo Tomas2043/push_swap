@@ -6,13 +6,13 @@
 /*   By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:17:25 by toandrad          #+#    #+#             */
-/*   Updated: 2025/12/16 10:56:07 by toandrad         ###   ########.fr       */
+/*   Updated: 2026/01/20 13:17:22 by toandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-int	find_bigger_target(t_stack *a, int b_value)
+static int	find_bigger_target(t_stack *a, int b_value)
 {
 	t_node	*cur;
 	int		pos;

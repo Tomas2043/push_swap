@@ -6,7 +6,7 @@
 /*   By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 10:15:01 by toandrad          #+#    #+#             */
-/*   Updated: 2025/09/19 10:57:16 by toandrad         ###   ########.fr       */
+/*   Updated: 2026/01/20 13:16:46 by toandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	push_min_to_b(t_stack *a, t_stack *b)
 	pb(a, b);
 }
 
-void	sort4(t_stack *a, t_stack *b)
+static void	sort4(t_stack *a, t_stack *b)
 {
 	push_min_to_b(a, b);
 	sort3(a);

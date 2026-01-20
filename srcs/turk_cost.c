@@ -6,7 +6,7 @@
 /*   By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:12:51 by toandrad          #+#    #+#             */
-/*   Updated: 2025/12/16 11:08:27 by toandrad         ###   ########.fr       */
+/*   Updated: 2026/01/20 13:17:03 by toandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,6 @@ static int	get_min(int a, int b)
 	if (a < b)
 		return (a);
 	return (b);
-}
-
-int	calculate_rotation_cost(int pos, int size)
-{
-	if (pos >= size / 2)
-		return (pos);
-	else
-		return (size - pos);
 }
 
 int	calculate_cost(t_stack *a, t_stack *b, int b_index)
