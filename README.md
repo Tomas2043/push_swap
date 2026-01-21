@@ -1,4 +1,4 @@
-*THis project has been created as part of the 42 curriculum by **toandrad***
+*This project has been created as part of the 42 curriculum by **toandrad***
 
 # Push_swap
 

@@ -57,7 +57,7 @@ run_test() {
 clear
 echo -e "${BLUE}╔════════════════════════════════════╗${NOCOLOR}"
 echo -e "${BLUE}║     PUSH_SWAP TESTER - LOOP.SH     ║${NOCOLOR}"
-echo -e "${BLUE}╔════════════════════════════════════╗${NOCOLOR}"
+echo -e "${BLUE}╚════════════════════════════════════╝${NOCOLOR}"
 echo ""
 
 # Check if push_swap exists
